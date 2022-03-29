@@ -45,8 +45,10 @@ class Sbg2Ros():
       t_ekf_quat = ekf_quat.header.stamp.to_sec()
       if t_imu_data<t_ekf_quat:
           imu.header = copy.copy(imu_data.header)
+          imu_raw.header = copy.copy(imu_data.header)
       else:
           imu.header = copy.copy(ekf_quat.header)
+          imu_raw.header = copy.copy(imu_data.header)
       # imu
       imu.angular_velocity    = copy.copy(imu_data.delta_angle)
       imu.linear_acceleration = copy.copy(imu_data.delta_vel)
